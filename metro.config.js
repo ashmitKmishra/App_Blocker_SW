@@ -1,20 +1,13 @@
 /**
- * Minimal Metro configuration for React Native
- * Adds TypeScript extensions so the bundler resolves .ts/.tsx files.
+ * Metro configuration for React Native with Expo
+ * https://github.com/facebook/react-native
+ *
+ * @format
  */
-const path = require('path');
 
-module.exports = {
-  transformer: {
-    // Use the default RN transformer
-    babelTransformerPath: require.resolve('metro-react-native-babel-transformer'),
-  },
-  resolver: {
-    sourceExts: ['js', 'json', 'ts', 'tsx', 'jsx'],
-    /*
-      If you use custom asset extensions (svg etc.) you can add them here.
-      assetExts: ['png','jpg',...]
-    */
-  },
-  watchFolders: [path.resolve(__dirname, '.')],
-};
+const { getDefaultConfig } = require('expo/metro-config');
+
+/** @type {import('expo/metro-config').MetroConfig} */
+const config = getDefaultConfig(__dirname);
+
+module.exports = config;

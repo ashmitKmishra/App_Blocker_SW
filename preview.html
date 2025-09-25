@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lockr App Preview</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 25px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+            height: calc(100% - 44px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        .feature {
+            background: #f8f9ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            text-align: left;
+        }
+        .feature-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .feature-desc {
+            color: #666;
+            font-size: 14px;
+        }
+        .status {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="screen">
+            <div class="status-bar">
+                Lockr - Focus Made Simple
+            </div>
+            <div class="content">
+                <div class="logo">🔒 Lockr</div>
+                <div class="subtitle">Your Personal App Usage Guardian</div>
+                
+                <div class="feature">
+                    <div class="feature-title">📅 Time Lock Mode</div>
+                    <div class="feature-desc">Set daily limits for distracting apps</div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-title">⏰ Hourly Ration Mode</div>
+                    <div class="feature-desc">5-15 min unlock windows per hour</div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-title">🎙️ Extreme Mode</div>
+                    <div class="feature-desc">Voice challenge to unlock apps</div>
+                </div>
+            </div>
+            <div class="status">
+                ✅ Metro Bundler Running - Ready to Deploy!
+            </div>
+        </div>
+    </div>
+</body>
+</html>
