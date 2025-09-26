@@ -1,14 +1,42 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { useUsageManager } from '../hooks/useUsageManager';
 
 export default function ModeConfigScreen({ navigation, route }: any) {
   const mode = route?.params?.mode || 'timelock';
   const selectedApps = route?.params?.selectedApps || ['instagram'];
   const [dailyLimit, setDailyLimit] = useState('30');
+  const { setupAppMonitoring, startBackgroundMonitoring } = useUsageManager();
 
-  const handleStartProtection = () => {
-    console.log('Starting protection:', { mode, selectedApps, dailyLimit });
-    navigation.navigate('Blocker');
+  const handleStartProtection = async () => {
+    try {
+      const limitMinutes = parseInt(dailyLimit);
+      if (isNaN(limitMinutes) || limitMinutes <= 0) {
+        // Use browser alert for web compatibility
+        alert('Invalid Limit\nPlease enter a valid number of minutes');
+        return;
+      }
+
+      console.log('Starting real protection:', { mode, selectedApps, dailyLimit: limitMinutes });
+      
+      // Set up real monitoring for each selected app
+      for (const app of selectedApps) {
+        const appName = app.charAt(0).toUpperCase() + app.slice(1); // Capitalize first letter
+        await setupAppMonitoring(app, appName, limitMinutes);
+      }
+
+      // Start background monitoring service
+      await startBackgroundMonitoring(selectedApps);
+
+      // Use browser alert for web compatibility
+      const message = `Monitoring ${selectedApps.join(', ')} with ${limitMinutes} minute${limitMinutes > 1 ? 's' : ''} daily limit.\n\nBackground service is now active and will block apps when limits are reached.`;
+      alert(`🚀 Protection Active\n${message}`);
+      
+      navigation.navigate('Blocker', { activeApps: selectedApps, dailyLimit: limitMinutes });
+    } catch (error) {
+      console.error('Failed to set up protection:', error);
+      alert('Error\nFailed to set up app protection. Please try again.');
+    }
   };
 
   return (
